@@ -25,8 +25,7 @@ class HomePage extends StatelessWidget {
         body: const _HomePageBody(),
         bottomNavigationBar: const CustomNavigationBar(),
         floatingActionButton: const ScanButon(),
-        floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerDocked);
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked);
   }
 }
 
@@ -36,23 +35,15 @@ class _HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UiProvider>(context);
-    //Cambiar para mostrar la pagina respectiva
     final currentIndex = uiProvider.selectedMenuOpt;
-    /*   final res = DBProvider.db
-        .getScanById(2)
-        .then((value) => print('************ ${value!.toJson()}')); */
-
-    // Usar el scan_list_provider
     final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
     switch (currentIndex) {
       case 0:
         scanListProvider.cargarScansPorTipo('geo');
         return const MapasPage();
-
       case 1:
       scanListProvider.cargarScansPorTipo('http');
         return const DireccionesPage();
-
       default:
         return const MapasPage();
     }
